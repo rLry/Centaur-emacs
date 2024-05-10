@@ -93,9 +93,38 @@
   (set-charset-priority 'unicode))
 (prefer-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
-(setq system-time-locale "C")
 (unless sys/win32p
-  (set-selection-coding-system 'utf-8))
+  (set-selection-coding-system 'utf-8)
+  (set-locale-environment 'utf-8)
+  (set-language-environment 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-clipboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-16le-dos)  ;; 解决粘贴中文出现乱码的问题
+  (set-file-name-coding-system 'utf-8)
+  (set-buffer-file-coding-system 'utf-8))
+
+(setq-default default-process-coding-system `(utf-8-dos . ,locale-coding-system))
+
+(setq-default process-coding-system-alist
+                    '(
+                      ("[pP][lL][iI][nN][kK]" utf-8-dos . gbk-dos)
+                      ("[cC][mM][dD][pP][rR][oO][xX][yY]" utf-8-dos . gbk-dos)
+                      ("[rR][gG]" utf-8-dos . gbk-dos)
+                      ("rg" utf-8 . gbk-dos)
+                      ("ug" utf-8 . gbk-dos)
+                      ("grep" utf-8 . gbk-dos)
+                      ("ugrep" utf-8 . gbk-dos)
+                      ("es" gbk-dos . gbk-dos)
+                      ("explorer" gbk-dos . gbk-dos)
+                      ("pandoc" utf-8 . gbk-dos)
+                      ("d2" utf-8 . gbk-dos)
+                      ("*" utf-8 . utf-8)
+                      ))
+
+(setq system-time-locale "C") ; Make sure that the weekdays in the time stamps of your Org mode files and in the agenda appear in English.
 
 ;; Environment
 (when (or sys/mac-x-p sys/linux-x-p (daemonp))

@@ -75,6 +75,17 @@
                 (set-frame-parameter nil 'ns-appearance bg)
                 (setcdr (assq 'ns-appearance default-frame-alist) bg)))))
 
+;;; Cursor changed to vertical line
+(setq-default cursor-type 'bar)
+
+;;; Space
+(use-package pangu-spacing
+  :init
+  (global-pangu-spacing-mode 1) ;; 全域性执行
+  (add-hook 'org-mode-hook
+            #'(lambda ()
+               (set (make-local-variable 'pangu-spacing-real-insert-separtor) t))) ;; org-mode下自动插入真实空格
+  )
 ;; Theme
 (if (centaur-compatible-theme-p centaur-theme)
     (progn
@@ -282,8 +293,10 @@
 ;; Show line numbers
 (use-package display-line-numbers
   :ensure nil
-  :hook ((prog-mode yaml-mode conf-mode) . display-line-numbers-mode)
-  :init (setq display-line-numbers-width-start t))
+  :hook ((prog-mode yaml-mode conf-mode org-mode) . display-line-numbers-mode)
+  :init (setq display-line-numbers-width-start t
+              display-line-numbers-grow-only   t
+              display-line-numbers-type        'relative))
 
 ;; Suppress GUI features
 (setq use-file-dialog nil

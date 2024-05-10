@@ -156,5 +156,7 @@ Otherwise the startup will be very slow."
 (require 'init-elixir)
 (require 'init-web)
 
+(require 'init-biblio)
+(require 'init-latex)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here

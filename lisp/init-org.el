@@ -140,8 +140,10 @@ prepended to the element after the #+HEADER: tag."
         org-todo-keywords
         '((sequence "TODO(t)" "DOING(i)" "HANGUP(h)" "|" "DONE(d)" "CANCEL(c)")
           (sequence "⚑(T)" "🏴(I)" "❓(H)" "|" "✔(D)" "✘(C)"))
-        org-todo-keyword-faces '(("HANGUP" . warning)
-                                 ("❓" . warning))
+        org-todo-keyword-faces '(("HANGUP" . (:inherit (bold warning org-todo)))
+                                 ("DOING"  . (:inherit (bold font-lock-constant-face org-todo)))
+                                 ("CANCEL"    . (:inherit (bold error org-todo)))
+                                 )
         org-priority-faces '((?A . error)
                              (?B . warning)
                              (?C . success))
@@ -160,7 +162,7 @@ prepended to the element after the #+HEADER: tag."
         org-log-done 'time
         org-catch-invisible-edits 'smart
         org-startup-indented t
-        org-ellipsis (if (char-displayable-p ?⏷) "\t⏷" nil)
+        org-agenda-sticky t
         org-pretty-entities nil
         org-hide-emphasis-markers t)
 
@@ -175,20 +177,41 @@ prepended to the element after the #+HEADER: tag."
               (centaur-webkit-browse-url (concat "file://" file) t)))
           org-file-apps))
 
+  (setq org-file-apps
+      '((auto-mode . emacs)
+        (directory       . emacs)
+        ("\\.docx\\'" . default)
+        ("\\.doc\\'" . default)
+        ("\\.xls\\'" . default)
+        ("\\.xlsx\\'" . default)
+        ("\\.ppt\\'" . default)
+        ("\\.pptx\\'" . default)
+        ("\\.drawio\\'" . default)
+        ("\\.djvu\\'" . default)
+        ("\\.png\\'"     . default)
+        ("\\.mm\\'"      . default)
+        ("\\.x?html?\\'" . default)
+        ("\\.pdf\\'"     . default)
+        ("\\.md\\'"      . emacs)
+        ;; ("\\.gif\\'"     . my-func/open-and-play-gif-image)
+        ("\\.svg\\'"     . default)
+      )
+  )
+
   ;; Add md/gfm backends
   (add-to-list 'org-export-backends 'md)
   (use-package ox-gfm
     :init (add-to-list 'org-export-backends 'gfm))
 
   ;; Prettify UI
-  (use-package org-modern
-    :hook ((org-mode . org-modern-mode)
-           (org-agenda-finalize . org-modern-agenda)
-           (org-modern-mode . (lambda ()
-                                "Adapt `org-modern-mode'."
-                                ;; Disable Prettify Symbols mode
-                                (setq prettify-symbols-alist nil)
-                                (prettify-symbols-mode -1)))))
+  ;; (use-package org-modern
+  ;;   :hook ((org-mode . org-modern-mode)
+  ;;          (org-agenda-finalize . org-modern-agenda)
+  ;;          (org-modern-mode . (lambda ()
+  ;;                               "Adapt `org-modern-mode'."
+  ;;                               ;; Disable Prettify Symbols mode
+  ;;                               (setq prettify-symbols-alist nil)
+  ;;                               (prettify-symbols-mode -1)))))
 
   ;; Babel
   (setq org-confirm-babel-evaluate nil
@@ -208,6 +231,12 @@ prepended to the element after the #+HEADER: tag."
       (shell      . t)
       (plantuml   . t))
     "Alist of org ob languages.")
+
+  (setq org-image-actual-width '(300))
+  (setq org-export-with-sub-superscripts nil)
+  (setq org-footnote-section "注")
+  (setq org-log-refile t)
+  (setq org-refile-allow-creating-parent-nodes 'confirm)
 
   (use-package ob-go
     :init (cl-pushnew '(go . t) load-language-alist))
@@ -295,39 +324,54 @@ prepended to the element after the #+HEADER: tag."
     (org-pomodoro-mode-line-break ((t (:inherit success))))
     :bind (:map org-mode-map
            ("C-c C-x m" . org-pomodoro))
+    :config
+    (add-hook 'org-pomodoro-finished-hook
+              (lambda ()
+                (org-notify "A pomodoro is finished, take a break !!!")
+                ))
+    (add-hook 'org-pomodoro-short-break-finished-hook
+              (lambda ()
+                (org-notify "A short break done, ready a new pomodoro !!!")
+                ))
+    (add-hook 'org-pomodoro-long-break-finished-hook
+              (lambda ()
+                (org-notify "A long break done, ready a new pomodoro !!!")
+                ))
     :init
     (with-eval-after-load 'org-agenda
       (bind-keys :map org-agenda-mode-map
         ("K" . org-pomodoro)
         ("C-c C-x m" . org-pomodoro)))))
 
-;; Roam
-(use-package org-roam
-  :diminish
-  :defines org-roam-graph-viewer
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n c" . org-roam-capture)
-         ("C-c n j" . org-roam-dailies-capture-today))
-  :init
-  (setq org-roam-directory (file-truename centaur-org-directory)
-        org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag))
-        org-roam-graph-viewer (if (featurep 'xwidget-internal)
-                                  #'xwidget-webkit-browse-url
-                                #'browse-url))
+;;org-download配置
+(use-package org-download
+  :hook ((org-mode dired-mode) . org-download-enable)
   :config
-  (unless (file-exists-p org-roam-directory)
-    (make-directory org-roam-directory))
-  (add-to-list 'org-agenda-files (format "%s/%s" org-roam-directory "roam"))
+  (setq org-download-method 'directory)
+  (setq org-download-image-dir "~/OneDrive/Notes/Org/Attached/img/")
+  (setq org-download-heading-lvl 'nil)
+  (setq org-download-image-org-width 600)
+  (setq org-download-screenshot-method "powershell -c Add-Type -AssemblyName System.Windows.Forms;$image = [Windows.Forms.Clipboard]::GetImage();$image.Save('%s', [System.Drawing.Imaging.ImageFormat]::Png)")
+)
 
-  (org-roam-db-autosync-enable))
-
-(use-package org-roam-ui
-  :bind ("C-c n u" . org-roam-ui-mode)
-  :init (when (featurep 'xwidget-internal)
-          (setq org-roam-ui-browser-function #'xwidget-webkit-browse-url)))
+;;pandoc配置
+(use-package ox-pandoc
+  :after ox
+  :init
+  (add-to-list 'org-export-backends 'pandoc)
+  :config
+  (setq org-pandoc-options
+          '((standalone . t)
+            (mathjax . t)
+            (variable . "revealjs-url=https://revealjs.com")))
+  ;; default options for all output formats
+  (setq org-pandoc-options '((standalone . t)))
+  ;; special settings for beamer-pdf and latex-pdf exporters
+  (setq org-pandoc-options-for-beamer-pdf '((pdf-engine . "xelatex")))
+  (setq org-pandoc-options-for-latex-pdf '((pdf-engine . "xelatex")))
+  ;; special extensions for markdown_github output
+  (setq org-pandoc-format-extensions '(markdown_github+pipe_tables+raw_html))
+)
 
 (provide 'init-org)
 

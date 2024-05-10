@@ -119,6 +119,9 @@
 (when (executable-find "fd")
   (use-package fd-dired))
 
+;;Put the directory to the top
+(setq ls-lisp-dirs-first t)
+
 (provide 'init-dired)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
