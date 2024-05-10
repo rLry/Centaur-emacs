@@ -29,12 +29,12 @@
 (global-set-key (kbd "C-c R") 'restart-emacs)
 
 ;; kill buffer
-(defun kill-all-buffer ()
+(defun my/kill-all-buffer ()
   "Kill all buffer."
   (interactive)
   (dolist (buffer (buffer-list)) (kill-buffer buffer)))
 
-(defun kill-other-buffer ()
+(defun my/kill-other-buffer ()
   "Close all of other buffer."
   (interactive)
   (dolist (buffer (delq (current-buffer) (buffer-list))) (kill-buffer buffer)))
