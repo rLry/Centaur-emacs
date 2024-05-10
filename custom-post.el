@@ -26,21 +26,34 @@
 
 (global-set-key (kbd "C-c q b") 'org-mark-ring-goto)
 
+(global-set-key (kbd "C-c R") 'restart-emacs)
+
+;; kill buffer
+(defun kill-all-buffer ()
+  "Kill all buffer."
+  (interactive)
+  (dolist (buffer (buffer-list)) (kill-buffer buffer)))
+
+(defun kill-other-buffer ()
+  "Close all of other buffer."
+  (interactive)
+  (dolist (buffer (delq (current-buffer) (buffer-list))) (kill-buffer buffer)))
+
 ;; Word count
 ;; https://emacs-china.org/t/advance-words-count-el/2562/16
 (defun my/wc-non-ascii (&optional start end)
   "count non-ascii"
   (interactive)
   (let ((start (if mark-active (region-beginning) (point-min)))
-        (end (if mark-active (region-end) (point-max))))
-    (save-excursion
-      (save-restriction
-        (narrow-to-region start end)
-        (goto-char start)
-        (message "lines: %3d non ascii words: %3d chars: %3d"
-           (count-lines start end)
-           (count-matches "[^[:ascii:]]")
-           (- end start))))))
+    (end (if mark-active (region-end) (point-max))))
+   (save-excursion
+    (save-restriction
+    (narrow-to-region start end)
+    (goto-char start)
+    (message "lines: %3d non ascii words: %3d chars: %3d"
+     (count-lines start end)
+     (count-matches "[^[:ascii:]]")
+     (- end start))))))
 (global-set-key (kbd "C-c q w") 'my/wc-non-ascii)
 
 ;; 记账
