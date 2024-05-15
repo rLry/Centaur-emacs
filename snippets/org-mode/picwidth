@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: picwidth
+# uuid: picwidth
+# key: picw
+# condition: t
+# --
+#+attr_org: :width 100

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: plantuml
+# uuid: plantuml
+# key: plantuml
+# condition: t
+# --
+#+begin_src plantuml :file ~/OneDrive/Notes/Org/Attached/plantuml/??.png
+@startuml
+`%`$0
+@enduml
+#+end_src

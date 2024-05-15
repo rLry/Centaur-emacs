@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: bib_book
+# uuid:
+# key: bib_book
+# condition: t
+# --
+* Quotation
+`%`$0
+* Review
+* Ref

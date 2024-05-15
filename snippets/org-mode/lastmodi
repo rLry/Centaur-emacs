@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: last_modified
+# uuid: last_modi
+# key: lastmodi
+# condition: t
+# --
+#+LAST_MODIFIED: [2024-04-10 Wed 19:36:42]

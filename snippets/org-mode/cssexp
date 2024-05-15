@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: cssexport
+# uuid: cssexp
+# key: cssexp
+# condition: t
+# --
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../Attached/org.css"/>

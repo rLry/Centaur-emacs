@@ -1,0 +1,28 @@
+# -*- mode: snippet -*-
+# name: kop
+# uuid: kop
+# key: kop
+# condition: t
+# --
+#+LAST_MODIFIED: [2023-05-14 Sun 10:26:40]
+#+AUTHOR:    ${1:`user-full-name`}
+#+EMAIL:     ${2:`user-mail-address`}
+#+OPTIONS: prop:t toc:2 \n:t
+#+STARTUP: indent
+# #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../Attached/org.css"/>
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: elegantnotescreen
+#+LATEX: \newpage
+#+cite_export: csl 中国社会科学.csl
+#+REVEAL_INIT_OPTIONS: slideNumber:true
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: serif
+#+OPTIONS: toc:1 timestamp:t num:t reveal_width:1400 reveal_height:1000
+#+REVEAL_PLUGINS: (multiplex notes search zoom)
+#+REVEAL_TRANS: slide
+#+REVEAL_ROOT: file:///c:/App/System/reveal.js
+# #+REVEAL: split强制分页
+
+`%`$0
+* 参考文献
+#+print_bibliography:
