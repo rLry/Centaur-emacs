@@ -70,7 +70,6 @@
 
 ; Anki
 (use-package anki-editor
-  :load-path "site-lisp/anki-editor/"
   :config
   (setq anki-editor-create-decks t ;; Allow anki-editor to create a new deck if it doesn't exist
         anki-editor-org-tags-as-anki-tags t)
