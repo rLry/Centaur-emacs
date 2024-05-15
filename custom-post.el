@@ -58,6 +58,7 @@
 
 ;; 记账
 (use-package beancount
+  :demand
   :load-path "site-lisp/beancount-mode/"
   :mode
   ("\\.bean\\(?:count\\)?\\'" . beancount-mode)
@@ -108,6 +109,7 @@
 )
 ;; typst
 (use-package typst-ts-mode
+  :demand
   :load-path "site-lisp/typst-ts-mode/"
   :custom
   ;; don't add "--open" if you'd like `watch` to be an error detector

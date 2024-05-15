@@ -63,6 +63,7 @@
   )
 
 (use-package org-noter-plus
+  :demand
   :load-path "site-lisp/org-noter-plus/"
   :config
   (setq org-noter-plus-image-dir "~/OneDrive/Notes/Org/Attached/img/") ;; Directory to store images extracted from pdf files
