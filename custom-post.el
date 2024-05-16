@@ -56,25 +56,6 @@
      (- end start))))))
 (global-set-key (kbd "C-c q w") 'my/wc-non-ascii)
 
-(defun my/org-agenda-files-recursively (dir exclude-dir)
-  "Return a list of all .org files in DIR and its sub-directories, excluding EXCLUDE-DIR."
-  (let ((org-file-list '()))
-    (dolist (file (directory-files dir t nil t))
-      (cond
-       ((file-directory-p file)
-        ;; Skip directories that are `.' or `..' or the exclude directory
-        (unless (or (member (file-name-nondirectory file) '("." ".."))
-                    (string-prefix-p (expand-file-name exclude-dir) (expand-file-name file)))
-          (setq org-file-list (append org-file-list (my/org-agenda-files-recursively file exclude-dir)))))
-       ((and (string-match "\\.org\\'" file)
-             (not (string-prefix-p (expand-file-name exclude-dir) (expand-file-name file))))
-        (push file org-file-list))))
-    org-file-list))
-
-(setq org-agenda-files (my/org-agenda-files-recursively
-                        (expand-file-name "~/OneDrive/Notes/Org/")
-                        "~/OneDrive/Notes/Org/Journal"))
-
 ;; 记账
 (use-package beancount
   :demand
