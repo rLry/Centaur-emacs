@@ -56,6 +56,34 @@
      (- end start))))))
 (global-set-key (kbd "C-c q w") 'my/wc-non-ascii)
 
+(defun my/count-org-words (directory)
+  "Count words in all .org files in DIRECTORY and its subdirectories."
+  (interactive "DDirectory: ")
+  (let ((org-files (directory-files-recursively directory "\\.org$"))
+        (english-word-count 0)
+        (number-count 0)
+        (chinese-character-count 0)
+        (total-character-count 0)
+        (total-words-numbers-chinese 0))
+    (dolist (file org-files)
+      (with-temp-buffer
+        (insert-file-contents file)
+        (setq total-character-count (+ total-character-count (buffer-size)))
+        (goto-char (point-min))
+        (while (re-search-forward "\\b\\([a-zA-Z]+\\)\\b" nil t)
+          (setq english-word-count (1+ english-word-count)))
+        (goto-char (point-min))
+        (while (re-search-forward "\\b\\([0-9]+\\)\\b" nil t)
+          (setq number-count (1+ number-count)))
+        (goto-char (point-min))
+        (while (re-search-forward "\\cC" nil t)
+          (setq chinese-character-count (1+ chinese-character-count)))))
+    (setq total-words-numbers-chinese (+ english-word-count
+                                         number-count
+                                         chinese-character-count))
+    (message "English words: %d, Numbers: %d, Chinese characters: %d, Total words/numbers/Chinese: %d, Total characters: %d"
+             english-word-count number-count chinese-character-count total-words-numbers-chinese total-character-count)))
+
 ;; ;; 延续centaur-org-directory设定，将其子目录都加入org-agenda-files
 ;; (defun update-org-agenda-files ()
 ;;   "Update `org-agenda-files` to include all Org files in `centaur-org-directory` and its subdirectories."
