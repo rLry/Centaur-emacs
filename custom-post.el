@@ -56,19 +56,19 @@
      (- end start))))))
 (global-set-key (kbd "C-c q w") 'my/wc-non-ascii)
 
-;; 延续centaur-org-directory设定，将其子目录都加入org-agenda-files
-(defun update-org-agenda-files ()
-  "Update `org-agenda-files` to include all Org files in `centaur-org-directory` and its subdirectories."
-  (let ((org-directory (expand-file-name centaur-org-directory)))
-    (setq org-agenda-files
-          (directory-files-recursively org-directory "\\.org$"))))
+;; ;; 延续centaur-org-directory设定，将其子目录都加入org-agenda-files
+;; (defun update-org-agenda-files ()
+;;   "Update `org-agenda-files` to include all Org files in `centaur-org-directory` and its subdirectories."
+;;   (let ((org-directory (expand-file-name centaur-org-directory)))
+;;     (setq org-agenda-files
+;;           (directory-files-recursively org-directory "\\.org$"))))
 
-(defun advice-org-agenda-update-files (&rest _)
-  "Advice function to update `org-agenda-files` before `org-agenda` is called."
-  (update-org-agenda-files))
+;; (defun advice-org-agenda-update-files (&rest _)
+;;   "Advice function to update `org-agenda-files` before `org-agenda` is called."
+;;   (update-org-agenda-files))
 
-;; 为 org-agenda 函数添加 advice，每次调用 org-agenda 时，org-agenda-files 变量都会被重新设置。
-(advice-add 'org-agenda :before #'advice-org-agenda-update-files)
+;; ;; 为 org-agenda 函数添加 advice，每次调用 org-agenda 时，org-agenda-files 变量都会被重新设置。
+;; (advice-add 'org-agenda :before #'advice-org-agenda-update-files)
 
 ;; 记账
 (use-package beancount
