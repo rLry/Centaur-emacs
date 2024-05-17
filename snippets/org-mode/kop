@@ -23,6 +23,5 @@
 #+REVEAL_ROOT: file:///c:/App/System/reveal.js
 # #+REVEAL: split强制分页
 
-`%`$0
 * 参考文献
 #+print_bibliography:
