@@ -4,7 +4,7 @@
 # key: plantuml
 # condition: t
 # --
-#+begin_src plantuml :file ~/OneDrive/Notes/Org/Attached/plantuml/??.png
+#+begin_src plantuml :file ~/OneDrive/Notes/Attached/plantuml/??.png
 @startuml
 `%`$0
 @enduml

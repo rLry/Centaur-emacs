@@ -4,6 +4,6 @@
 # key: d2
 # condition: t
 # --
-#+begin_src d2 :file ~/OneDrive/Notes/Org/Attached/d2/??.png
+#+begin_src d2 :file ~/OneDrive/Notes/Attached/d2/??.png
 `%`$0
 #+end_src

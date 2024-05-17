@@ -7,14 +7,14 @@
 ;;; Notes
 (use-package denote
   :bind (("C-c n n" . denote)
-     ("C-c n d" . denote-date)
-     ("C-c n t" . denote-type)
-     ("C-c n s" . denote-subdirectory)
-     ("C-c n g" . denote-signature)
-     ("C-c n f" . denote-open-or-create)
-     ("C-c n j" . denote-journal-extras-new-or-existing-entry))
+         ("C-c n d" . denote-date)
+         ("C-c n t" . denote-type)
+         ("C-c n s" . denote-subdirectory)
+         ("C-c n g" . denote-signature)
+         ("C-c n f" . denote-open-or-create)
+         ("C-c n j" . denote-journal-extras-new-or-existing-entry))
   :config
-  (setq denote-directory (expand-file-name "~/OneDrive/Notes/Org/"))
+  (setq denote-directory (expand-file-name "~/OneDrive/Notes/Slipbox/"))
   (setq denote-infer-keywords t)
   (setq denote-sort-keywords t)
   (setq denote-file-type nil)
@@ -54,7 +54,7 @@
 
 (use-package org-noter
   :config
-  (setq org-noter-notes-search-path '("~/OneDrive/Notes/Org/Literature")) ;; 默认笔记路径
+  (setq org-noter-notes-search-path '("~/OneDrive/Notes/Literature")) ;; 默认笔记路径
   (setq org-noter-auto-save-last-location t) ;; 自动保存上次阅读位置
   ;; (setq org-noter-insert-selected-text-inside-note t)
   ;; (setq org-noter-insert-note-no-questions t)
@@ -66,7 +66,7 @@
   :demand
   :load-path "site-lisp/org-noter-plus/"
   :config
-  (setq org-noter-plus-image-dir "~/OneDrive/Notes/Org/Attached/img/") ;; Directory to store images extracted from pdf files
+  (setq org-noter-plus-image-dir "~/OneDrive/Notes/Attached/img/") ;; Directory to store images extracted from pdf files
   )
 
 (use-package consult-notes
@@ -76,13 +76,11 @@
   :config
   (setq consult-notes-sources
        '(
-         ("Notes"             ?o "~/OneDrive/Notes/Org/")
-         ("Project"           ?p "~/OneDrive/Notes/Org/Project/")
-         ("Literature"        ?l "~/OneDrive/Notes/Org/Literature/")
-         ("Permanent"         ?e "~/OneDrive/Notes/Org/Permanent/")
-         ("Archives"          ?a "~/OneDrive/Notes/Org/Archives/")
-         ("Novel"             ?n "~/OneDrive/Notes/Org/Novel/")
-         ("Journal"           ?j "~/OneDrive/Notes/Org/Journal/")
+         ("Org"               ?o "~/OneDrive/Notes/Org/")
+         ("Slipbox"           ?s "~/OneDrive/Notes/Slipbox/")
+         ("Literature"        ?l "~/OneDrive/Notes/Literature/")
+         ("Novel"             ?n "~/OneDrive/Notes/Novel/")
+         ("Journal"           ?j "~/OneDrive/Notes/Journal/")
          ))
   (when (locate-library "denote")
    (consult-notes-denote-mode))
@@ -94,7 +92,7 @@
   :defer t
   :bind (("C-c n e" . org-journal-new-entry))
   :config
-  (setq org-journal-dir "~/OneDrive/Notes/Org/Journal/")
+  (setq org-journal-dir "~/OneDrive/Notes/Journal/")
   (setq org-journal-date-format "%a, %b %d %Y")
   (setq org-journal-file-type 'yearly)
   (setq org-journal-file-format "%Y.org")
@@ -125,7 +123,7 @@
 
 (with-eval-after-load 'oc
   (setq org-cite-global-bibliography '("~/OneDrive/Notes/Biblio/reference.bib")
-       org-cite-csl-styles-dir "~/OneDrive/Notes/Styles"
+       org-cite-csl-styles-dir "~/OneDrive/Biblio/Styles"
        org-cite-export-processors '((xelatex biblatex)
                                    (beamer biblatex)
                                    (latex biblatex)
@@ -141,7 +139,7 @@
   :config
   (setq citar-bibliography  '("~/OneDrive/Notes/Biblio/reference.bib"))
   (setq citar-library-paths '("~/OneDrive/Library"))
-  (setq citar-notes-paths   '("~/OneDrive/Notes/Org/Literature"))
+  (setq citar-notes-paths   '("~/OneDrive/Notes/Literature"))
   (setq org-cite-insert-processor 'citar)
   (setq org-cite-follow-processor 'citar)
   (setq org-cite-activate-processor 'citar)
@@ -177,7 +175,7 @@
        (quote ((org-mode (("cite" "\\cite{%K}"))))))
   (setq ebib-file-search-dirs  '("~/OneDrive/Library"))
   (setq ebib-preload-bib-files '("~/OneDrive/Notes/Biblio/reference.bib"))
-  (setq ebib-notes-directory   '("~/OneDrive/Notes/Org/Literature"))
+  (setq ebib-notes-directory   '("~/OneDrive/Notes/Literature"))
   (setq ebib-file-associations '(("pdf" . embark-open-externally)))
   (setq ebib-reading-list-file "~/OneDrive/Notes/Org/read.org")
   (setq ebib-keywords "~/OneDrive/Notes/Biblio/ebib-keywords.txt")
