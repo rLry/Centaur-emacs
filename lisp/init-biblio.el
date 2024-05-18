@@ -14,7 +14,7 @@
          ("C-c n f" . denote-open-or-create)
          ("C-c n j" . denote-journal-extras-new-or-existing-entry))
   :config
-  (setq denote-directory (expand-file-name "~/OneDrive/Notes/Slipbox/"))
+  (setq denote-directory (expand-file-name "~/OneDrive/Notes/"))
   (setq denote-infer-keywords t)
   (setq denote-sort-keywords t)
   (setq denote-file-type nil)
