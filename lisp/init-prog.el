@@ -91,8 +91,8 @@
          ("M-g ," . xref-go-back))
   :init
   ;; Use faster search tool
-  (when (executable-find "rg")
-    (setq xref-search-program 'ripgrep))
+  (when (executable-find "ugrep")
+    (setq xref-search-program 'ugrep))
 
   ;; Select from xref candidates in minibuffer
   (setq xref-show-definitions-function #'xref-show-definitions-completing-read

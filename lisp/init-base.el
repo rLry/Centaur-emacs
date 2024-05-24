@@ -106,22 +106,22 @@
   (set-file-name-coding-system 'utf-8)
   (set-buffer-file-coding-system 'utf-8))
 
-(setq-default default-process-coding-system `(utf-8-dos . ,locale-coding-system))
-
 (setq-default process-coding-system-alist
                     '(
                       ("[pP][lL][iI][nN][kK]" utf-8-dos . gbk-dos)
                       ("[cC][mM][dD][pP][rR][oO][xX][yY]" utf-8-dos . gbk-dos)
                       ("[rR][gG]" utf-8-dos . gbk-dos)
-                      ("rg" utf-8 . gbk-dos)
-                      ("ug" utf-8 . gbk-dos)
-                      ("grep" utf-8 . gbk-dos)
-                      ("ugrep" utf-8 . gbk-dos)
+                      ("rg" utf-8-dos . gbk-dos)
+                      ("ug" utf-8-dos . gbk-dos)
+                      ("grep" utf-8-dos . gbk-dos)
+                      ("ripgrep" utf-8-dos . gbk-dos)
+                      ("ugrep" utf-8-dos . gbk-dos)
+                      ("cmdproxy" utf-8-dos . gbk-dos)
                       ("es" gbk-dos . gbk-dos)
                       ("explorer" gbk-dos . gbk-dos)
-                      ("pandoc" utf-8 . gbk-dos)
-                      ("d2" utf-8 . gbk-dos)
-                      ("*" utf-8 . utf-8)
+                      ("pandoc" utf-8-dos . gbk-dos)
+                      ("d2" utf-8-dos . gbk-dos)
+                      ("*" utf-8-dos . utf-8-dos)
                       ))
 
 (setq system-time-locale "C") ; Make sure that the weekdays in the time stamps of your Org mode files and in the agenda appear in English.
