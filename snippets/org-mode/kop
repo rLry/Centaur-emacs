@@ -13,7 +13,7 @@
 #+LATEX_COMPILER: xelatex
 #+LATEX_CLASS: elegantnotescreen
 #+LATEX: \newpage
-#+cite_export: csl 中国社会科学.csl
+#+cite_export: csl 311social-sciences-in-china.csl
 #+REVEAL_INIT_OPTIONS: slideNumber:true
 #+REVEAL_REVEAL_JS_VERSION: 4
 #+REVEAL_THEME: serif
