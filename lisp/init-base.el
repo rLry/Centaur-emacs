@@ -93,23 +93,7 @@
   (set-charset-priority 'unicode))
 (prefer-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
-(if sys/win32p
-  (add-to-list 'process-coding-system-alist
-                 '("[pP][lL][iI][nN][kK]" utf-8-dos . gbk-dos)
-                  ("[cC][mM][dD][pP][rR][oO][xX][yY]" utf-8-dos . gbk-dos)
-                  ("[rR][gG]" utf-8-dos . gbk-dos)
-                  ("rg" utf-8-dos . gbk-dos)
-                  ("ug" utf-8-dos . gbk-dos)
-                  ("grep" utf-8-dos . gbk-dos)
-                  ("ripgrep" utf-8-dos . gbk-dos)
-                  ("ugrep" utf-8-dos . gbk-dos)
-                  ("cmdproxy" utf-8-dos . gbk-dos)
-                  ("es" gbk-dos . gbk-dos)
-                  ("explorer" gbk-dos . gbk-dos)
-                  ("pandoc" utf-8-dos . gbk-dos)
-                  ("d2" utf-8-dos . gbk-dos)
-                  ("*" utf-8-dos . utf-8-dos)
-                 )
+(unless sys/win32p
   (set-selection-coding-system 'utf-8)
   (set-locale-environment 'utf-8)
   (set-language-environment 'utf-8)
@@ -121,6 +105,24 @@
   (set-selection-coding-system 'utf-16le-dos)  ;; 解决粘贴中文出现乱码的问题
   (set-file-name-coding-system 'utf-8)
   (set-buffer-file-coding-system 'utf-8))
+
+(setq-default process-coding-system-alist
+                    '(
+                      ("[pP][lL][iI][nN][kK]" utf-8-dos . gbk-dos)
+                      ("[cC][mM][dD][pP][rR][oO][xX][yY]" utf-8-dos . gbk-dos)
+                      ("[rR][gG]" utf-8-dos . gbk-dos)
+                      ("rg" utf-8-dos . gbk-dos)
+                      ("ug" utf-8-dos . gbk-dos)
+                      ("grep" utf-8-dos . gbk-dos)
+                      ("ripgrep" utf-8-dos . gbk-dos)
+                      ("ugrep" utf-8-dos . gbk-dos)
+                      ("cmdproxy" utf-8-dos . gbk-dos)
+                      ("es" gbk-dos . gbk-dos)
+                      ("explorer" gbk-dos . gbk-dos)
+                      ("pandoc" utf-8-dos . gbk-dos)
+                      ("d2" utf-8-dos . gbk-dos)
+                      ("*" utf-8-dos . utf-8-dos)
+                      ))
 
 (setq system-time-locale "C") ; Make sure that the weekdays in the time stamps of your Org mode files and in the agenda appear in English.
 
