@@ -39,6 +39,9 @@
   (interactive)
   (dolist (buffer (delq (current-buffer) (buffer-list))) (kill-buffer buffer)))
 
+;; 删除光标以后的空行
+(fset 'my/delete-empty-lines (kbd "M-x flush-lines RET ^\s-*$ RET"))
+
 ;; Word count
 ;; https://emacs-china.org/t/advance-words-count-el/2562/16
 (defun my/wc-non-ascii (&optional start end)
@@ -81,7 +84,7 @@
     (setq total-words-numbers-chinese (+ english-word-count
                                          number-count
                                          chinese-character-count))
-    (message "English words: %d, Numbers: %d, Chinese characters: %d, Total words/numbers/Chinese: %d, Total characters: %d"
+    (message "English: %d, Numbers: %d, Chinese: %d, Total chinese-character: %d, Total characters: %d"
              english-word-count number-count chinese-character-count total-words-numbers-chinese total-character-count)))
 
 ;; ;; 延续centaur-org-directory设定，将其子目录都加入org-agenda-files
