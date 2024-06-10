@@ -126,16 +126,17 @@ prepended to the element after the #+HEADER: tag."
         org-capture-templates
         `(("i" "Idea" entry (file ,(concat org-directory "/idea.org"))
            "*  %^{Title} %?\n%U\n%a\n")
-          ("t" "Todo" entry (file ,(concat org-directory "/gtd.org"))
+          ("t" "Todo" entry (file ,(concat org-directory "/agenda.org"))
            "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
           ("n" "Note" entry (file ,(concat org-directory "/note.org"))
            "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
           ("j" "Journal" entry (file+olp+datetree
                                 ,(concat org-directory "/journal.org"))
            "*  %^{Title} %?\n%U\n%a\n" :clock-in t :clock-resume t)
-	      ("b" "Book" entry (file+olp+datetree
-                             ,(concat org-directory "/book.org"))
-	       "* Topic: %^{Description}  %^g %? Added: %U"))
+          ("b" "Book" entry (file+olp+datetree
+                              ,(concat org-directory "/book.org"))
+          "* Topic: %^{Description}  %^g %? Added: %U")
+         )
 
         org-todo-keywords
         '((sequence "TODO(t)" "DOING(i)" "HANGUP(h)" "|" "DONE(d)" "CANCEL(c)")

@@ -52,6 +52,18 @@
    (message "%s Denote files (%s Attachments), %s Distinct Keywords."
 		  denote-files attachments keywords)))
 
+(use-package denote-explore
+  :custom
+  ;; Location of graph files
+  (denote-explore-network-directory "~/OneDrive/Notes/Attached/graphs/")
+  (denote-explore-network-filename "denote-network")
+  ;; Output format
+  (denote-explore-network-format 'graphviz)
+  (denote-explore-network-graphviz-filetype "svg")
+  ;; Exlude keywords or regex
+  (denote-explore-network-keywords-ignore '("bib"))
+)
+
 (use-package org-noter
   :config
   (setq org-noter-notes-search-path '("~/OneDrive/Notes/Literature")) ;; 默认笔记路径
@@ -201,6 +213,11 @@
            (format "%s-%s" year title)))))
 
 (setq ebib-name-transform-function 'my-ebib-name-transform-function)
+
+(use-package org-ql
+  :ensure t
+)
+
 
 (provide 'init-biblio)
 
