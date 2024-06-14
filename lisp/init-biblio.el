@@ -135,7 +135,7 @@
 
 (with-eval-after-load 'oc
   (setq org-cite-global-bibliography '("~/OneDrive/Notes/Biblio/reference.bib")
-        org-cite-csl-styles-dir "~/OneDrive/Notes/Biblio/Styles"
+        org-cite-csl-styles-dir "~/OneDrive/Notes/Biblio/styles"
         org-cite-csl-locales-dir "~/OneDrive/Notes/Biblio/locales"
         org-cite-export-processors '((xelatex biblatex)
                                      (beamer biblatex)
