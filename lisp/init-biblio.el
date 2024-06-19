@@ -220,10 +220,10 @@
   ;; set to your directories for locale and style data
   (setq universal-sidecar-citeproc-locales "~/OneDrive/Notes/Biblio/locales"
           universal-sidecar-citeproc-styles "~/OneDrive/Notes/Biblio/styles"
-          universal-sidecar-citeproc-default-style "311social-sciences-in-china.csl")
+          universal-sidecar-citeproc-default-style "social-sciences-in-china.csl")
 
   (add-to-list 'universal-sidecar-sections '(ebib-sidecar :header "Citation Preview"))
-  (add-to-list 'universal-sidecar-sections '(org-cite-overlay-sidecar :header "Ref" :style "311social-sciences-in-china.csl"))
+  (add-to-list 'universal-sidecar-sections '(org-cite-overlay-sidecar :header "Ref" :style "social-sciences-in-china.csl"))
   (add-to-list 'universal-sidecar-sections 'denote-sections-backlinks-section)
   (add-to-list 'universal-sidecar-sections 'denote-citar-sections-abstract-section)
   (add-to-list 'universal-sidecar-sections 'denote-citar-sections-reference-section)
