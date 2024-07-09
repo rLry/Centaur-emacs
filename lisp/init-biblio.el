@@ -214,6 +214,9 @@
 
 (setq ebib-name-transform-function 'my-ebib-name-transform-function)
 
+(use-package biblio
+  :ensure t)
+
 (use-package universal-sidecar
   :demand t
   :config
