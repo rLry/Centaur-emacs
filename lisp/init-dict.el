@@ -82,7 +82,7 @@
                                             (gt-google-engine :if 'word)))
                            :render  (list (gt-posframe-pop-render :if (lambda (translator)
                                                                         (and (display-graphic-p)
-                                                                             (not (derived-mode-p 'Info-mode 'help-mode 'helpful-mode))
+                                                                             (not (derived-mode-p 'Info-mode 'help-mode 'helpful-mode 'devdocs-mode))
                                                                              (not (member (buffer-name) '("COMMIT_EDITMSG")))))
                                                                   :frame-params (list :accept-focus nil
                                                                                       :width 70
