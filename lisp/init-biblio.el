@@ -183,6 +183,7 @@
   :bind ("<f2>" . ebib)
   :config
   (setq ebib-use-timestamp t)
+  (setq ebib-create-backups nil)  
   (setq ebib-bibtex-dialect 'biblatex)
   (setq ebib-citation-commands
        (quote ((org-mode (("cite" "\\cite{%K}"))))))
