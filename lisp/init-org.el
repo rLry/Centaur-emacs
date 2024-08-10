@@ -171,7 +171,7 @@ prepended to the element after the #+HEADER: tag."
   (add-to-list 'org-structure-template-alist '("n" . "note"))
 
   ;; Use embedded webkit browser if possible
-  (when (featurep 'xwidget-internal)
+  (when (and (featurep 'xwidget-internal) (display-graphic-p))
     (push '("\\.\\(x?html?\\|pdf\\)\\'"
             .
             (lambda (file _link)
@@ -285,7 +285,7 @@ prepended to the element after the #+HEADER: tag."
     :diminish
     :bind (:map org-mode-map
            ("C-c C-h" . org-preview-html-mode))
-    :init (when (featurep 'xwidget-internal)
+    :init (when (and (featurep 'xwidget-internal) (display-graphic-p))
             (setq org-preview-html-viewer 'xwidget)))
 
   ;; Presentation
