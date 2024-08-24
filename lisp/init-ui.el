@@ -61,7 +61,7 @@
 (setq frame-title-format '("Centaur Emacs - %b")
       icon-title-format frame-title-format)
 
-(when (and sys/mac-ns-p sys/mac-x-p)
+(when (and sys/mac-x-p sys/mac-ns-p sys/mac-port-p)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-hook 'server-after-make-frame-hook
@@ -293,7 +293,7 @@
 ;; Show line numbers
 (use-package display-line-numbers
   :ensure nil
-  :hook ((prog-mode yaml-mode conf-mode org-mode) . display-line-numbers-mode)
+  :hook ((prog-mode yaml-mode yaml-ts-mode conf-mode org-mode) . display-line-numbers-mode)
   :init (setq display-line-numbers-width-start t
               display-line-numbers-grow-only   t
               display-line-numbers-type        'relative))
