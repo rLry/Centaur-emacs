@@ -158,6 +158,10 @@
   (setq org-cite-activate-processor 'citar)
   (setq citar-at-point-function 'embark-act)
   (setq citar-library-file-extensions nil)
+  (setq citar-citeproc-csl-styles-dir "~/OneDrive/Notes/Biblio/styles")
+  (setq citar-citeproc-csl-locales-dir "~/OneDrive/Notes/Biblio/locales")
+  (setq citar-format-reference-function 'citar-citeproc-format-reference)
+  (setq citar-citeproc-format-reference "social-sciences-in-china.csl")
   (add-to-list 'citar-file-open-functions '("pdf" . citar-file-open-external))
   (setq citar-file-additional-files-separator "-")
   (setq citar-at-point-function 'embark-act)
@@ -217,37 +221,6 @@
 
 (use-package biblio
   :ensure t)
-
-(use-package universal-sidecar
-  :demand t
-  :config
-  ;; set to your directories for locale and style data
-  (setq universal-sidecar-citeproc-locales "~/OneDrive/Notes/Biblio/locales"
-          universal-sidecar-citeproc-styles "~/OneDrive/Notes/Biblio/styles"
-          universal-sidecar-citeproc-default-style "social-sciences-in-china.csl")
-
-  (add-to-list 'universal-sidecar-sections '(ebib-sidecar :header "Citation Preview"))
-  (add-to-list 'universal-sidecar-sections '(org-cite-overlay-sidecar :header "Ref" :style "social-sciences-in-china.csl"))
-  (add-to-list 'universal-sidecar-sections 'denote-sections-backlinks-section)
-  (add-to-list 'universal-sidecar-sections 'denote-citar-sections-abstract-section)
-  (add-to-list 'universal-sidecar-sections 'denote-citar-sections-reference-section)
-)
-
-(use-package ebib-sidecar
-  :demand t
-)
-
-(use-package denote-sections
-  :demand t
-)
-
-(use-package denote-citar-sections
-  :demand t
-)
-
-(use-package org-cite-overlay-sidecar
-  :demand t
-)
 
 (use-package org-ql
   :ensure t
