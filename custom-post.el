@@ -1,4 +1,4 @@
-;;;;个人定义函数及快捷键
+;;; 个人定义函数及快捷键
 (add-hook 'org-mode-hook
             (lambda ()
               (setq-local time-stamp-active t
@@ -188,3 +188,35 @@
   ;; experimental settings (I'm the main dev, so I enable these)
   (typst-ts-mode-enable-raw-blocks-highlight t)
   (typst-ts-mode-highlight-raw-blocks-at-startup t))
+
+;; 支持 Windows 从剪贴板复制图片
+(defun my/insert-image-from-clipboard ()
+  "Insert an image from the clipboard into the current org buffer."
+  (interactive)
+  (let* ((current-dir (file-name-directory buffer-file-name))
+     (file-name-base (file-name-base buffer-file-name))
+     (attach-dir (concat current-dir "attach/" file-name-base "/"))
+     ;; (attach-dir (concat current-dir "attach/"  (file-name-nondirectory buffer-file-name) "/"))
+     (image-file (concat attach-dir (format-time-string "%Y%m%d_%H%M%S") ".png")))
+   ;; Ensure attach directory exists
+   (unless (file-exists-p attach-dir)
+   (make-directory attach-dir t))
+   ;; Save the clipboard image to the attach directory
+   (if (eq system-type 'windows-nt)
+   (progn
+    (shell-command (concat "powershell -command \"Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Clipboard]::GetImage().Save('" image-file "', [System.Drawing.Imaging.ImageFormat]::Png)\""))
+    ;; 转换格式, 从 c:/Users/Jack/Desktop/attact/test/clipboard.png 之类
+    ;; 转换成 ./attach/test/clipboard.png
+    (setq image-file (replace-regexp-in-string
+              "^[^:]+:/.*\\(/attach/.*\\)" ".\\1" image-file))
+    (when (eq major-mode 'org-mode)
+     ;; 输入文件所在位置文本
+     (insert (concat "[[file:" image-file "]]"))
+     ;; 显示图片
+     (org-display-inline-images))
+     (when (eq major-mode 'markdown-mode)
+     (insert (concat "![]" "(" image-file ")"))
+     (markdown-display-inline-images))
+     )
+    (error "Unsupported OS"))
+   ))
