@@ -116,6 +116,7 @@
                       ("grep" utf-8-dos . gbk-dos)
                       ("ripgrep" utf-8-dos . gbk-dos)
                       ("ugrep" utf-8-dos . gbk-dos)
+                      ("fd" utf-8-dos . gbk-dos)
                       ("cmdproxy" utf-8-dos . gbk-dos)
                       ("es" gbk-dos . gbk-dos)
                       ("explorer" gbk-dos . gbk-dos)
