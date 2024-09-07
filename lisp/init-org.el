@@ -364,9 +364,9 @@ prepended to the element after the #+HEADER: tag."
   (add-to-list 'org-export-backends 'pandoc)
   :config
   (setq org-pandoc-options
-          '((standalone . t)
-            (mathjax . t)
-            (variable . "revealjs-url=https://revealjs.com")))
+     '((standalone . t)
+     (mathjax . t)
+     (variable . "revealjs-url=https://revealjs.com")))
   ;; default options for all output formats
   (setq org-pandoc-options '((standalone . t)))
   ;; special settings for beamer-pdf and latex-pdf exporters
@@ -374,7 +374,15 @@ prepended to the element after the #+HEADER: tag."
   (setq org-pandoc-options-for-latex-pdf '((pdf-engine . "xelatex")))
   ;; special extensions for markdown_github output
   (setq org-pandoc-format-extensions '(markdown_github+pipe_tables+raw_html))
-)
+  )
+
+;; Org-transclusion lets you insert a copy of text content via a file link or ID link within an Org file.
+(use-package org-transclusion
+  :after org
+  :config
+  ;; 绑定 F12 键到 org-transclusion-add
+  (global-set-key (kbd "<f12>") #'org-transclusion-add)
+  )
 
 (provide 'init-org)
 
