@@ -1,12 +1,10 @@
 ;;; 个人定义函数及快捷键
-(add-hook 'org-mode-hook
-            (lambda ()
-              (setq-local time-stamp-active t
-                          time-stamp-line-limit 18
-                          time-stamp-start "^#\\+LAST_MODIFIED: [ \t]*"
-                          time-stamp-end "$"
-                          time-stamp-format "\[%Y-%m-%d %a %H:%M:%S\]")
-              (add-hook 'before-save-hook 'time-stamp nil 'local)))
+;;Update a field (#+LAST_MODIFIED) at save
+(setq time-stamp-active t
+      time-stamp-start "#\\+LAST_MODIFIED:[ \t]*"
+      time-stamp-end "$"
+      time-stamp-format "\[%Y-%m-%d %a %H:%M:%S\]")
+(add-hook 'before-save-hook 'time-stamp nil)
 
 ;; 一键copy 整行的内容到剪切板
 (defun my/copy-line()
