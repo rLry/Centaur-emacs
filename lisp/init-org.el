@@ -139,13 +139,12 @@ prepended to the element after the #+HEADER: tag."
          )
 
         org-todo-keywords
-        '((sequence "Backlog(b)" "TODO(t)" "|" "DOING(i)" "HANGUP(h)" "InReview(r)" "|" "DONE(d)" "CANCEL(c)")
+        '((sequence "TODO(t)" "|" "DOING(i)" "HANGUP(h)" "InReview(r)" "|" "DONE(d)" "CANCEL(c)")
           (sequence "⚑(T)" "🏴(I)" "❓(H)" "|" "✔(D)" "✘(C)"))
         org-todo-keyword-faces '(("HANGUP"    . (:inherit (bold warning org-todo)))
                                  ("InReview"    . (:inherit (bold success font-lock-doc-face org-todo)))
                                  ("DOING"     . (:inherit (bold font-lock-constant-face org-todo)))
                                  ("CANCEL"    . (:inherit (bold error org-todo)))
-                                 ("Backlog"    . (:inherit (bold font-lock-doc-face org-todo)))
                                  )
         org-priority-faces '((?A . error)
                              (?B . warning)
