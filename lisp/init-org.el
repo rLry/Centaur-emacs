@@ -161,7 +161,10 @@ prepended to the element after the #+HEADER: tag."
         "⭠ now ─────────────────────────────────────────────────"
 
         org-tags-column -80
+        org-closed-keep-when-no-todo t ;; Remove CLOSED: [timestamp] after switching to non-DONE states
         org-log-done 'time
+        org-log-repeat 'time
+        org-log-into-drawer t
         org-catch-invisible-edits 'smart
         org-startup-indented t
         org-agenda-sticky t

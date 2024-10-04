@@ -220,6 +220,68 @@
                 ("Wikipedia" .
                  [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""]))))
 
+;; 记账
+(use-package beancount
+  :demand
+  :load-path "site-lisp/beancount-mode/"
+  :mode
+  ("\\.bean\\(?:count\\)?\\'" . beancount-mode)
+  :config
+  (setq beancount-accounts-files
+        (directory-files "~/OneDrive/Documents/Beancount/"
+                         'full
+                         (rx ".bean" eos)))
+)
+
+; Anki
+(use-package anki-editor
+  :config
+  (setq anki-editor-create-decks t ;; Allow anki-editor to create a new deck if it doesn't exist
+        anki-editor-org-tags-as-anki-tags t)
+
+  (defun anki-editor-cloze-region-auto-incr (&optional arg)
+    "Cloze region without hint and increase card number."
+    (interactive)
+    (anki-editor-cloze-region my-anki-editor-cloze-number "")
+    (setq my-anki-editor-cloze-number (1+ my-anki-editor-cloze-number))
+    (forward-sexp))
+  (defun anki-editor-cloze-region-dont-incr (&optional arg)
+    "Cloze region without hint using the previous card number."
+    (interactive)
+    (anki-editor-cloze-region (1- my-anki-editor-cloze-number) "")
+    (forward-sexp))
+  (defun anki-editor-reset-cloze-number (&optional arg)
+    "Reset cloze number to ARG or 1"
+    (interactive)
+    (setq my-anki-editor-cloze-number (or arg 1)))
+  (defun anki-editor-push-tree ()
+    "Push all notes under a tree."
+    (interactive)
+    (anki-editor-push-notes '(4))
+    (anki-editor-reset-cloze-number))
+  ;; Initialize
+  (anki-editor-reset-cloze-number)
+)
+
+;; d2
+(use-package d2-mode
+  :config
+  (setq d2-output-format ".png")
+  (setq d2-tmp-dir "~/.emacs.d/tmp/")
+    ;; Enable d2-mode for d2 files
+  (add-to-list 'auto-mode-alist '("\\.d2\\'" . d2-mode))
+)
+;; typst
+(use-package typst-ts-mode
+  :demand
+  :load-path "site-lisp/typst-ts-mode/"
+  :custom
+  ;; don't add "--open" if you'd like `watch` to be an error detector
+  (typst-ts-mode-watch-options "--open")
+  ;; experimental settings (I'm the main dev, so I enable these)
+  (typst-ts-mode-enable-raw-blocks-highlight t)
+  (typst-ts-mode-highlight-raw-blocks-at-startup t))
+  
 ;; IRC
 (use-package erc
   :ensure nil
