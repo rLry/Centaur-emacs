@@ -4,7 +4,7 @@
 ;;;       Put your own configurations in custom-post.el to override default configurations.
 ;;; Code:
 
-;; (setq centaur-logo nil)                        ; Logo file or nil (official logo)
+(setq centaur-logo nil)                        ; Logo file or nil (official logo)
 (setq centaur-full-name "rLry")           ; User full name
 (setq centaur-mail-address "Liuryme@outlook.com")   ; Email address
 (setq centaur-proxy "127.0.0.1:7897")          ; HTTP/HTTPS proxy
@@ -14,7 +14,7 @@
 (setq centaur-package-archives 'tuna)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
 (setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'minibuffer)    ; Completion display style: minibuffer or childframe
-;; (setq centaur-dashboard nil)                   ; Display dashboard at startup or not: t or nil
+(setq centaur-dashboard nil)                   ; Display dashboard at startup or not: t or nil
 ;; (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
 ;; (setq centaur-lsp-format-on-save t)            ; Auto format buffers on save: t or nil
 ;; (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode python-mode markdown-mode)) ; Ignore format on save for some languages
@@ -110,9 +110,9 @@
 ;; (enable-socks-proxy)
 
 ;; Display on the specified monitor
-;; (when (and (> (length (display-monitor-attributes-list)) 1)
-;;            (> (display-pixel-width) 1920))
-;;   (set-frame-parameter nil 'left 1920))
+(when (and (> (length (display-monitor-attributes-list)) 1)
+           (> (display-pixel-width) 1920))
+  (set-frame-parameter nil 'left 1920))
 
 ;; (put 'cl-destructuring-bind 'lisp-indent-function 'defun)
 ;; (put 'pdf-view-create-image 'lisp-indent-function 'defun)

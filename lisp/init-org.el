@@ -139,7 +139,7 @@ prepended to the element after the #+HEADER: tag."
          )
 
         org-todo-keywords
-        '((sequence "TODO(t)" "|" "DOING(i)" "HANGUP(h)" "InReview(r)" "|" "DONE(d)" "CANCEL(c)")
+        '((sequence "TODO(t)" "|" "DOING(i!)" "HANGUP(h@/!)" "InReview(r@/!)" "|" "DONE(d!)" "CANCEL(c@/!)")
           (sequence "⚑(T)" "🏴(I)" "❓(H)" "|" "✔(D)" "✘(C)"))
         org-todo-keyword-faces '(("HANGUP"    . (:inherit (bold warning org-todo)))
                                  ("InReview"    . (:inherit (bold success font-lock-doc-face org-todo)))
@@ -161,9 +161,8 @@ prepended to the element after the #+HEADER: tag."
         "⭠ now ─────────────────────────────────────────────────"
 
         org-tags-column -80
-        org-closed-keep-when-no-todo t ;; Remove CLOSED: [timestamp] after switching to non-DONE states
-        org-log-done 'time
-        org-log-repeat 'time
+        ;; org-log-done 'time
+        ;; org-log-repeat 'time
         org-log-into-drawer t
         org-catch-invisible-edits 'smart
         org-startup-indented t
