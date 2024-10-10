@@ -7,7 +7,7 @@
 (use-package org
   :config
   (setq org-preview-latex-default-process 'dvisvgm)
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2)))
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 0.75)))
 
 (use-package tex
   :ensure nil
