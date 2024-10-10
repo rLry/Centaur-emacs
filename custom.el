@@ -79,6 +79,7 @@
              return (progn
                       (setq face-font-rescale-alist `((,font . 1.3)))
                       (set-fontset-font t 'han (font-spec :family font))
+                      (set-fontset-font t 'kana (font-spec :family font))
                       (set-fontset-font t 'cjk-misc (font-spec :family font));;中文标点符号字体
                       ))))
 
