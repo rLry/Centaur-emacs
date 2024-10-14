@@ -203,19 +203,25 @@
   (setq ebib-citations-insert-multiple t) ;;Enable multiple citations 启用多个引用
   )
 
+;; (defun my-ebib-name-transform-function (key)
+;;   "Generate a filename based on the year, title, and publisher of the entry."
+;;   (let* ((year (ebib-get-field-value "year" key ebib--cur-db "XXXX" t))
+;;          (title (ebib-get-field-value "title" key ebib--cur-db "No_Title" t))
+;;          (publisher (ebib-get-field-value "publisher" key ebib--cur-db "No_Publisher" t))
+;;          (journaltitle (ebib-get-field-value "journaltitle" key ebib--cur-db "No_Journal" t))
+;;          (entrytype (ebib-get-field-value "=type=" key ebib--cur-db "misc" t)))
+;;     (cond ((string= entrytype "Book")
+;;            (format "%s-%s-%s" year title publisher))
+;;           ((string= entrytype "Article")
+;;            (format "%s-%s-%s" year title journaltitle))
+;;           (t
+;;            (format "%s-%s" year title)))))
+
 (defun my-ebib-name-transform-function (key)
-  "Generate a filename based on the year, title, and publisher of the entry."
+  "Generate a filename based on the year and title of the entry, with defaults for missing data."
   (let* ((year (ebib-get-field-value "year" key ebib--cur-db "XXXX" t))
-         (title (ebib-get-field-value "title" key ebib--cur-db "No_Title" t))
-         (publisher (ebib-get-field-value "publisher" key ebib--cur-db "No_Publisher" t))
-         (journaltitle (ebib-get-field-value "journaltitle" key ebib--cur-db "No_Journal" t))
-         (entrytype (ebib-get-field-value "=type=" key ebib--cur-db "misc" t)))
-    (cond ((string= entrytype "Book")
-           (format "%s-%s-%s" year title publisher))
-          ((string= entrytype "Article")
-           (format "%s-%s-%s" year title journaltitle))
-          (t
-           (format "%s-%s" year title)))))
+         (title (ebib-get-field-value "title" key ebib--cur-db "No_Title" t)))
+    (format "%s-%s" year title)))
 
 (setq ebib-name-transform-function 'my-ebib-name-transform-function)
 
