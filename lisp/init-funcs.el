@@ -55,9 +55,6 @@
      time-stamp-format "\[%Y-%m-%d %a %H:%M:%S\]")
 (add-hook 'before-save-hook 'time-stamp nil)
 
-(add-hook 'org-insert-heading-hook
-         (lambda () (org-set-property "CREATED" (format-time-string "%Y-%m-%d %a %H:%M:%S"))))
-
 ;; 一键copy 整行的内容到剪切板
 (defun my/copy-line()
   (interactive)
