@@ -265,6 +265,8 @@
            ("C-x K"   . delete-this-file)
            ("C-c C-l" . reload-init-file))
 
+(tooltip-mode -1) ; 关闭 tooltip 功能
+
 (provide 'init-base)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
