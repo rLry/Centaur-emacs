@@ -271,17 +271,7 @@
     ;; Enable d2-mode for d2 files
   (add-to-list 'auto-mode-alist '("\\.d2\\'" . d2-mode))
 )
-;; typst
-(use-package typst-ts-mode
-  :demand
-  :load-path "site-lisp/typst-ts-mode/"
-  :custom
-  ;; don't add "--open" if you'd like `watch` to be an error detector
-  (typst-ts-mode-watch-options "--open")
-  ;; experimental settings (I'm the main dev, so I enable these)
-  (typst-ts-mode-enable-raw-blocks-highlight t)
-  (typst-ts-mode-highlight-raw-blocks-at-startup t))
-  
+
 ;; IRC
 (use-package erc
   :ensure nil
