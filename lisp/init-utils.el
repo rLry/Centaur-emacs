@@ -145,6 +145,7 @@
 
 ;; Better UI for `calc'
 (use-package casual-calc
+  :ensure nil
   :after calc
   :bind (:map calc-mode-map
          ("C-o" . casual-calc-tmenu)
