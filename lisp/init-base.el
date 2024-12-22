@@ -177,7 +177,7 @@
   :init
   (setq column-number-mode t
         line-number-mode t
-        ;; kill-whole-line t               ; Kill line including '\n'
+        kill-whole-line t               ; Kill line including '\n'
         line-move-visual nil
         track-eol t                     ; Keep cursor at end of lines. Require line-move-visual is nil.
         set-mark-command-repeat-pop t)  ; Repeating C-SPC after popping mark pops it again
@@ -193,7 +193,7 @@
   (with-no-warnings
     (defun my-list-processes--prettify ()
       "Prettify process list."
-      (when-let ((entries tabulated-list-entries))
+      (when-let* ((entries tabulated-list-entries))
         (setq tabulated-list-entries nil)
         (dolist (p (process-list))
           (when-let* ((val (cadr (assoc p entries)))
