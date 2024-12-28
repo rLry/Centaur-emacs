@@ -302,7 +302,8 @@
           conf-mode toml-ts-mode
           yaml-mode yaml-ts-mode)
          . display-line-numbers-mode)
-  :init (setq display-line-numbers-width-start t))
+  :init (setq display-line-numbers-width-start t)
+  :config (setq display-line-numbers-type 'relative))
 
 ;; Suppress GUI features
 (setq use-file-dialog nil
