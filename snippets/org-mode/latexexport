@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: latexexport
+# uuid: latexexport
+# key: latexexport
+# condition: t
+# --
+#+LATEX_COMPILER: xelatex
+#+LATEX_CLASS: elegantpaper
+#+LATEX: \newpage
+#+cite_export: csl social-sciences-in-china.csl
+* 参考文献
+#+print_bibliography:
