@@ -93,6 +93,7 @@
          ("Literature"        ?l "~/OneDrive/Notes/Literature/")
          ("Novel"             ?n "~/OneDrive/Notes/Novel/")
          ("Journal"           ?j "~/OneDrive/Notes/Journal/")
+         ("Work"              ?w "~/OneDrive/Notes/Work/")
          ))
   (when (locate-library "denote")
    (consult-notes-denote-mode))

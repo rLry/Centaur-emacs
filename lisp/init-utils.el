@@ -212,19 +212,6 @@
                 ("Wikipedia" .
                  [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""]))))
 
-;; 记账
-(use-package beancount
-  :demand
-  :load-path "site-lisp/beancount-mode/"
-  :mode
-  ("\\.bean\\(?:count\\)?\\'" . beancount-mode)
-  :config
-  (setq beancount-accounts-files
-        (directory-files "~/OneDrive/Documents/Beancount/"
-                         'full
-                         (rx ".bean" eos)))
-)
-
 ; Anki
 (use-package anki-editor
   :config
