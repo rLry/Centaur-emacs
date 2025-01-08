@@ -298,12 +298,13 @@
 ;; Show line numbers
 (use-package display-line-numbers
   :ensure nil
-  :hook ((prog-mode org-mode
-          conf-mode toml-ts-mode
+  :hook ((prog-mode conf-mode toml-ts-mode
           yaml-mode yaml-ts-mode)
          . display-line-numbers-mode)
   :init (setq display-line-numbers-width-start t)
-  :config (setq display-line-numbers-type 'relative))
+  :config 
+  (setq display-line-numbers-type 'relative)
+  (add-hook 'org-mode-hook #'display-line-numbers-mode))
 
 ;; Suppress GUI features
 (setq use-file-dialog nil
