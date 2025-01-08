@@ -233,19 +233,19 @@
   :ensure t
 )
 
-(use-package fsrs
-  :load-path "site-lisp/lisp-fsrs/"
-  :defer t)
+;; (use-package fsrs
+;;   :load-path "site-lisp/lisp-fsrs/"
+;;   :defer t)
 
-(use-package org-srs
-  :load-path "site-lisp/org-srs/"
-  :defer t
-  :hook (org-mode . org-srs-embed-overlay-mode)
-  :bind (:map org-mode-map
-         ("<f5>" . org-srs-review-rate-easy)
-         ("<f6>" . org-srs-review-rate-good)
-         ("<f7>" . org-srs-review-rate-hard)
-         ("<f8>" . org-srs-review-rate-again)))
+;; (use-package org-srs
+;;   :load-path "site-lisp/org-srs/"
+;;   :defer t
+;;   :hook (org-mode . org-srs-embed-overlay-mode)
+;;   :bind (:map org-mode-map
+;;          ("<f5>" . org-srs-review-rate-easy)
+;;          ("<f6>" . org-srs-review-rate-good)
+;;          ("<f7>" . org-srs-review-rate-hard)
+;;          ("<f8>" . org-srs-review-rate-again)))
 
 (provide 'init-biblio)
 
