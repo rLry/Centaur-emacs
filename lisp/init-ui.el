@@ -84,6 +84,7 @@
 (setq-default cursor-type 'bar)
 
 ;;; Space
+(require 'rx)
 (use-package pangu-spacing
   :init
   (global-pangu-spacing-mode 1) ;; 全域性执行
