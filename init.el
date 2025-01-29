@@ -97,6 +97,8 @@ Otherwise the startup will be very slow."
 (advice-add #'package-initialize :after #'update-load-path)
 (advice-add #'package-initialize :after #'add-subdirs-to-load-path)
 
+;; (setq debug-on-error t)
+
 (update-load-path)
 
 ;; Requisites

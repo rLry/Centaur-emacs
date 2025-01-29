@@ -12,6 +12,9 @@
          ("C-c n s" . denote-subdirectory)
          ("C-c n g" . denote-signature)
          ("C-c n f" . denote-open-or-create)
+         ("C-c n l" . denote-link-or-create)
+         ("C-c n L" . denote-link)
+         ("C-c n B" . denote-backlinks)
          ("C-c n j" . denote-journal-extras-new-or-existing-entry))
   :config
   (setq denote-directory (expand-file-name "~/OneDrive/Notes/"))
