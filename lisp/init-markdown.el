@@ -1,6 +1,6 @@
 ;; init-markdown.el --- Initialize markdown configurations.	-*- lexical-binding: t -*-
 
-;; Copyright (C) 2009-2024 Vincent Zhang
+;; Copyright (C) 2009-2025 Vincent Zhang
 
 ;; Author: Vincent Zhang <seagle0128@gmail.com>
 ;; URL: https://github.com/seagle0128/.emacs.d
@@ -124,7 +124,7 @@ mermaid.initialize({
         (apply fn args))))))
 
 ;; Preview markdown files
-;; @see: https://github.com/seagle0128/grip-mode?tab=readme-ov-file#prerequisite
+;; @see https://github.com/seagle0128/grip-mode?tab=readme-ov-file#prerequisite
 (use-package grip-mode
   :defines markdown-mode-command-map org-mode-map
   :functions auth-source-user-and-password

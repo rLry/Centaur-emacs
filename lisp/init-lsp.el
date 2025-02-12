@@ -1,6 +1,6 @@
 ;; init-lsp.el --- Initialize LSP configurations.	-*- lexical-binding: t -*-
 
-;; Copyright (C) 2018-2024 Vincent Zhang
+;; Copyright (C) 2018-2025 Vincent Zhang
 
 ;; Author: Vincent Zhang <seagle0128@gmail.com>
 ;; URL: https://github.com/seagle0128/.emacs.d
@@ -122,7 +122,7 @@
 
      (with-no-warnings
        ;; Emacs LSP booster
-       ;; @seee https://github.com/blahgeek/emacs-lsp-booster
+       ;; @see https://github.com/blahgeek/emacs-lsp-booster
        (when (executable-find "emacs-lsp-booster")
          (defun lsp-booster--advice-json-parse (old-fn &rest args)
            "Try to parse bytecode instead of json."
