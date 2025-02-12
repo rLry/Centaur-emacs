@@ -41,7 +41,7 @@
   (tabspaces-include-buffers '("*scratch*" "*Messages*"))
   ;; sessions
   (tabspaces-session t)
-  (tabspaces-session-auto-restore (not centaur-dashboard))
+  (tabspaces-session-auto-restore nil)
   :init
   ;; Filter Buffers for Consult-Buffer
   (with-eval-after-load 'consult
