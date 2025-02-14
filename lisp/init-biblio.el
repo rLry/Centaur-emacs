@@ -84,6 +84,10 @@
   (setq org-noter-plus-image-dir "~/OneDrive/Notes/Attached/img/") ;; Directory to store images extracted from pdf files
   )
 
+(use-package djvu
+  :ensure t
+  :after org-noter-plus)
+
 (use-package consult-notes
   :commands (consult-notes
             consult-notes-search-in-all-notes)
