@@ -30,6 +30,7 @@
                     "social" "politics" "economics" "law"
                     "literature" "language"
                     "art"
+                    "clippings"
                     ))
   (setq denote-date-format nil)
   (setq denote-rename-no-confirm t)
@@ -101,6 +102,7 @@
          ("Novel"             ?n "~/OneDrive/Notes/Novel/")
          ("Journal"           ?j "~/OneDrive/Notes/Journal/")
          ("Work"              ?w "~/OneDrive/Notes/Work/")
+         ("Clippings"         ?c "~/OneDrive/Notes/Clippings/")
          ))
   (when (locate-library "denote")
    (consult-notes-denote-mode))
@@ -209,6 +211,7 @@
   (setq ebib-keywords-field-keep-sorted t)
   (setq ebib-index-default-sort '("Year" . ascend)) ;;Sort columns displayed in index buffer 对索引缓冲区中显示的列进行排序
   (setq ebib-citations-insert-multiple t) ;;Enable multiple citations 启用多个引用
+  (setq ebib-filters-default-file "~/OneDrive/Notes/Biblio/ebib-filters") ;;
   )
 
 ;; (defun my-ebib-name-transform-function (key)
