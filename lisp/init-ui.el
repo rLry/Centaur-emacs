@@ -351,15 +351,13 @@
       auto-window-vscroll nil
       scroll-preserve-screen-position t)
 
-;; Good pixel line scrolling
-(if (fboundp 'pixel-scroll-precision-mode)
-    (pixel-scroll-precision-mode t)
-  (unless sys/macp
-    (use-package good-scroll
-      :diminish
-      :hook (after-init . good-scroll-mode)
-      :bind (([remap next] . good-scroll-up-full-screen)
-             ([remap prior] . good-scroll-down-full-screen)))))
+;; Smooth scrolling
+(use-package ultra-scroll
+  :when emacs/>=29p
+  :ensure nil
+  :init (unless (package-installed-p 'ultra-scroll)
+          (package-vc-install "https://github.com/jdtsmith/ultra-scroll"))
+  :hook (after-init . ultra-scroll-mode))
 
 ;; Smooth scrolling over images
 (unless emacs/>=30p
@@ -424,7 +422,7 @@
     (setq ns-pop-up-frames nil)))
 
 ;; Ligatures support
-(when (and emacs/>=28p (not centaur-prettify-symbols-alist))
+(unless centaur-prettify-symbols-alist
   (use-package composite
     :ensure nil
     :init (defvar composition-ligature-table (make-char-table nil))

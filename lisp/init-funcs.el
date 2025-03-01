@@ -522,15 +522,6 @@ Return the fastest package archive."
       read-expression-map t
       'read-expression-history))))
 
-;; WORKAROUND: fix blank screen issue on macOS.
-(defun fix-fullscreen-cocoa ()
-  "Address blank screen issue with child-frame in fullscreen.
-This issue has been addressed in 28."
-  (and sys/mac-cocoa-p
-       (not emacs/>=28p)
-       (bound-and-true-p ns-use-native-fullscreen)
-       (setq ns-use-native-fullscreen nil)))
-
 
 
 ;; Update
@@ -617,9 +608,12 @@ This issue has been addressed in 28."
 
 (defun childframe-workable-p ()
   "Whether childframe is workable."
-  (not (or noninteractive
-           emacs-basic-display
-           (not (display-graphic-p)))))
+  (and (>= emacs-major-version 26)
+       (not noninteractive)
+       (not emacs-basic-display)
+       (or (display-graphic-p)
+           (featurep 'tty-child-frames))
+       (eq (frame-parameter (selected-frame) 'minibuffer) 't)))
 
 (defun childframe-completion-workable-p ()
   "Whether childframe completion is workable."
