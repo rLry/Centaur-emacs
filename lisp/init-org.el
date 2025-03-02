@@ -348,7 +348,7 @@ prepended to the element after the #+HEADER: tag."
   :hook ((org-mode dired-mode) . org-download-enable)
   :config
   (setq org-download-method 'directory)
-  (setq org-download-image-dir "~/OneDrive/Notes/Attached/img/")
+  (setq-default org-download-image-dir "~/OneDrive/Notes/Attached/img/")
   (setq org-download-heading-lvl 'nil)
   (setq org-download-image-org-width 600)
   (setq org-download-screenshot-method "powershell -c Add-Type -AssemblyName System.Windows.Forms;$image = [Windows.Forms.Clipboard]::GetImage();$image.Save('%s', [System.Drawing.Imaging.ImageFormat]::Png)")
