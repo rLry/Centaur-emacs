@@ -192,6 +192,15 @@
     (error "Unsupported OS"))
    ))
 
+(defun my/remove-all-org-tags ()
+  "Remove all tags from headings in the current Org buffer."
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (let ((tags (org-get-tags)))
+       (when tags
+         (org-set-tags nil))))))
+
 ;; Font
 (defun font-installed-p (font-name)
   "Check if font with FONT-NAME is available."
