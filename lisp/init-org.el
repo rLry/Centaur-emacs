@@ -130,7 +130,7 @@ prepended to the element after the #+HEADER: tag."
        ("t" "Todo" entry (file ,(concat org-directory "/agenda.org"))
         "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
        ("w" "Work" entry (file+headline ,(concat org-directory "/work.org") ,(format-time-string "[%Y-%m-%d %a]"))
-        "** %?\n%U\n")
+        "**  %^{Title}\n%U\n%?")
        )
 
       org-todo-keywords
