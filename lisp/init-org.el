@@ -169,12 +169,12 @@ prepended to the element after the #+HEADER: tag."
   (add-to-list 'org-structure-template-alist '("n" . "note"))
 
   ;; Use embedded webkit browser if possible
-  (when (and (featurep 'xwidget-internal) (display-graphic-p))
-   (push '("\\.\\(x?html?\\|pdf\\)\\'"
-         .
-         (lambda (file _link)
-           (centaur-webkit-browse-url (concat "file://" file) t)))
-       org-file-apps))
+  (when (xwidget-workable-p)
+    (push '("\\.\\(x?html?\\|pdf\\)\\'"
+            .
+            (lambda (file _link)
+              (centaur-webkit-browse-url (concat "file://" file) t)))
+          org-file-apps))
 
   (setq org-file-apps
       '((auto-mode . emacs)
@@ -278,7 +278,7 @@ prepended to the element after the #+HEADER: tag."
     :diminish
     :bind (:map org-mode-map
            ("C-c C-h" . org-preview-html-mode))
-    :init (when (and (featurep 'xwidget-internal) (display-graphic-p))
+    :init (when (xwidget-workable-p)
             (setq org-preview-html-viewer 'xwidget)))
 
   ;; Presentation
