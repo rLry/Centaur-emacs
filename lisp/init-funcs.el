@@ -131,7 +131,7 @@
     (setq total-words-numbers-chinese (+ english-word-count
                                          number-count
                                          chinese-character-count))
-    (message "English: %d, Numbers: %d, Chinese: %d, Total chinese-character: %d, Total characters: %d"
+    (message "English: %d, Numbers: %d, Chinese: %d, Chi+Eng+Num: %d, Total: %d"
              english-word-count number-count chinese-character-count total-words-numbers-chinese total-character-count)))
 
 (defun my/toggle-window-split ()
