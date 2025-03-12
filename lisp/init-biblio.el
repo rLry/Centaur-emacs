@@ -220,7 +220,7 @@
   (let* ((year (ebib-get-field-value "year" key ebib--cur-db "XXXX" t))
          (title (ebib-get-field-value "title" key ebib--cur-db "No_Title" t))
          (entrytype (ebib-get-field-value "=type=" key ebib--cur-db "misc" t)))
-    (if (string= entrytype "Mvbook")
+    (if (string= entrytype "MVBook")
         (let ((volume (ebib-get-field-value "volume" key ebib--cur-db "No_Volume" t)))
           (format "%s-%s-%s" year title volume))
       (format "%s-%s" year title))))
