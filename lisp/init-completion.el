@@ -55,14 +55,13 @@
   :hook ((after-init . vertico-mode)
          (rfn-eshadow-update-overlay . vertico-directory-tidy)))
 
-(when (childframe-completion-workable-p)
-  (use-package vertico-posframe
-    :hook (vertico-mode . vertico-posframe-mode)
-    :init (setq vertico-posframe-poshandler
-                #'posframe-poshandler-frame-center-near-bottom
-                vertico-posframe-parameters
-                '((left-fringe  . 8)
-                  (right-fringe . 8)))))
+(use-package vertico-posframe
+  :hook (vertico-mode . vertico-posframe-mode)
+  :init (setq vertico-posframe-poshandler
+              #'posframe-poshandler-frame-center-near-bottom
+              vertico-posframe-parameters
+              '((left-fringe  . 8)
+                (right-fringe . 8))))
 
 (use-package nerd-icons-completion
   :when (icons-displayable-p)
@@ -295,7 +294,6 @@ targets."
                 :around #'embark-hide-which-key-indicator)))
 
 (use-package embark-consult
-  :after embark consult
   :bind (:map minibuffer-mode-map
          ("C-c C-o" . embark-export))
   :hook (embark-collect-mode . consult-preview-at-point-mode))
