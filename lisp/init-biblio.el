@@ -46,6 +46,21 @@
   (add-hook 'dired-mode-hook #'denote-dired-mode)
   )
 
+(use-package denote-org
+  :ensure t)
+
+(use-package denote-journal
+  :ensure t)
+
+(use-package denote-silo
+  :ensure t)
+
+(use-package denote-markdown
+  :ensure t)
+
+(use-package denote-sequence
+  :ensure t)
+  
 (defun my/denote-info ()
   "Count number of Denote text files,keywords and attachments."
   (interactive)
