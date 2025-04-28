@@ -93,17 +93,17 @@
   (setq org-noter-max-short-selected-text-length 20) ;; 默认为 80
   )
 
-(use-package org-noter-plus
+(use-package org-annot-bridge
   :demand
-  :vc (org-noter-plus :url "https://github.com/yuchen-lea/org-noter-plus.git"
+  :vc (org-annot-bridge :url "https://github.com/yuchen-lea/org-annot-bridge.git"
                     :branch "main")
   :config
-  (setq org-noter-plus-image-dir "~/OneDrive/Notes/Attached/img/") ;; Directory to store images extracted from pdf files
+  (setq org-annot-bridge-image-dir "~/OneDrive/Notes/Attached/img/") ;; Directory to store images extracted from pdf files
   )
 
 (use-package djvu
   :ensure t
-  :after org-noter-plus)
+  :after org-annot-bridge)
 
 (use-package consult-notes
   :commands (consult-notes
