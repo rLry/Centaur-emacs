@@ -30,7 +30,6 @@
 
 ;;; Code:
 
-(require 'subr-x)
 (require 'init-funcs)
 
 ;; Compatibility
@@ -130,6 +129,7 @@
 ;; Environment
 (when (or sys/mac-x-p sys/linux-x-p (daemonp))
   (use-package exec-path-from-shell
+    :commands exec-path-from-shell-initialize
     :custom (exec-path-from-shell-arguments '("-l"))
     :init (exec-path-from-shell-initialize)))
 
