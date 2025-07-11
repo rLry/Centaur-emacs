@@ -36,7 +36,8 @@
   :bind ("C-c f" . flymake-show-buffer-diagnostics)
   :hook (prog-mode . flymake-mode)
   :init (setq flymake-no-changes-timeout nil
-              flymake-fringe-indicator-position 'right-fringe)
+              flymake-fringe-indicator-position 'right-fringe
+              flymake-margin-indicator-position 'right-margin)
   :config
   ;; Check elisp with `load-path'
   (defun my-elisp-flymake-byte-compile (fn &rest args)
@@ -48,14 +49,11 @@
 
 (use-package flymake-popon
   :diminish
-  :functions childframe-workable-p
   :custom-face
   (flymake-popon ((t :inherit default :height 0.85)))
   (flymake-popon-posframe-border ((t :foreground ,(face-background 'posframe-border nil t))))
   :hook (flymake-mode . flymake-popon-mode)
-  :init (setq flymake-popon-width 80
-              flymake-popon-posframe-border-width 1
-              flymake-popon-method (if (childframe-workable-p) 'posframe 'popon)))
+  :init (setq flymake-popon-width 80))
 
 (provide 'init-check)
 

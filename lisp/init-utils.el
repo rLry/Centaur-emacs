@@ -133,6 +133,20 @@
               (expand-file-name "persistent-scratch" user-emacs-directory)))
 
 ;; Search tools
+(use-package grep
+  :ensure nil
+  :autoload grep-apply-setting
+  :init
+  (when (executable-find "rg")
+    (grep-apply-setting
+     'grep-command "rg --color=auto --null -nH --no-heading -e ")
+    (grep-apply-setting
+     'grep-template "rg --color=auto --null --no-heading -g '!*/' -e <R> <D>")
+    (grep-apply-setting
+     'grep-find-command '("rg --color=auto --null -nH --no-heading -e ''" . 38))
+    (grep-apply-setting
+     'grep-find-template "rg --color=auto --null -nH --no-heading -e <R> <D>")))
+
 ;; Writable `grep' buffer
 (use-package wgrep
   :init
@@ -186,7 +200,8 @@
   :init
   (setq-default proced-format 'verbose)
   (setq proced-auto-update-flag t
-        proced-auto-update-interval 3))
+        proced-auto-update-interval 3
+        proced-enable-color-flag t))
 
 ;; Search
 (use-package webjump
