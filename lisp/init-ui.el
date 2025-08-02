@@ -281,27 +281,25 @@
 
 (use-package hide-mode-line
   :autoload turn-off-hide-mode-line-mode
-  :hook (((treemacs-mode
+  :hook (((eat-mode
            eshell-mode shell-mode
-           term-mode vterm-mode eat-mode
-           embark-collect-mode
-           lsp-ui-imenu-mode
-           pdf-annot-list-mode) . turn-on-hide-mode-line-mode)
-         (dired-mode . (lambda()
-                         (and (bound-and-true-p hide-mode-line-mode)
-                              (turn-off-hide-mode-line-mode))))))
+           term-mode vterm-mode
+           embark-collect-mode lsp-ui-imenu-mode
+           pdf-annot-list-mode) . turn-on-hide-mode-line-mode)))
 
 ;; A minor-mode menu for mode-line
 (use-package minions
-  :hook (doom-modeline-mode . minions-mode))
+  :hook (after-init . minions-mode))
 
 ;; Icons
 (use-package nerd-icons
   :commands nerd-icons-install-fonts
-  :functions font-installed-p
+  :functions font-available-p
   :config
+  ;; Install nerd fonts automatically only in GUI
+  ;; For macOS, may install via "brew install font-symbols-only-nerd-font"
   (when (and (display-graphic-p)
-             (not (font-installed-p nerd-icons-font-family)))
+             (not (font-available-p nerd-icons-font-family)))
     (nerd-icons-install-fonts t)))
 
 ;; Show line numbers
@@ -362,9 +360,6 @@
 ;; Smooth scrolling
 (when emacs/>=29p
   (use-package ultra-scroll
-    :ensure nil
-    :init (unless (package-installed-p 'ultra-scroll)
-            (package-vc-install "https://github.com/jdtsmith/ultra-scroll"))
     :hook (after-init . ultra-scroll-mode)))
 
 ;; Use fixed pitch where it's sensible

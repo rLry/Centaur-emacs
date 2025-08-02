@@ -38,7 +38,7 @@
     (cl-loop for font in '("Iosevka NF" "Cascadia Code" "Fira Code" "Jetbrains Mono"
                            "SF Mono" "Hack" "Source Code Pro" "Menlo"
                            "Monaco" "DejaVu Sans Mono" "Consolas")
-             when (font-installed-p font)
+             when (font-available-p font)
              return (set-face-attribute 'default nil
                                         :family font
                                         :height (cond (sys/macp 130)
@@ -58,15 +58,13 @@
 
     ;; Specify font for all unicode characters
     (cl-loop for font in '("Apple Symbols" "Segoe UI Symbol" "Symbola" "Symbol")
-             when (font-installed-p font)
+             when (font-available-p font)
              return (set-fontset-font t 'symbol (font-spec :family font) nil 'prepend))
 
     ;; Emoji
     (cl-loop for font in '("Noto Color Emoji" "Apple Color Emoji" "Segoe UI Emoji")
-             when (font-installed-p font)
-             return (set-fontset-font t
-                                      (if (< emacs-major-version 28)'symbol 'emoji)
-                                      (font-spec :family font) nil 'prepend))
+             when (font-available-p font)
+             return (set-fontset-font t 'emoji (font-spec :family font) nil 'prepend))
 
     ;; Specify font for Chinese characters
     (cl-loop for font in '("LXGW WenKai Screen" "LXGW WenKai Mono" "PingFang SC" "Microsoft Yahei UI" "Simhei")

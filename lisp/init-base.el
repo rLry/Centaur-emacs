@@ -30,6 +30,11 @@
 
 ;;; Code:
 
+;; Suppress warnings
+(eval-when-compile
+  (require 'init-const)
+  (require 'init-custom))
+
 (require 'init-funcs)
 
 ;; Compatibility
@@ -295,7 +300,7 @@
                2)))))
 
 ;; Global keybindings
-(bind-keys ("s-r"     . revert-this-buffer)
+(bind-keys ("s-r"     . revert-buffer-quick)
            ("C-x K"   . delete-this-file)
            ("C-c C-l" . reload-init-file))
 

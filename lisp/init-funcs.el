@@ -202,7 +202,7 @@
          (org-set-tags nil))))))
 
 ;; Font
-(defun font-installed-p (font-name)
+(defun font-available-p (font-name)
   "Check if font with FONT-NAME is available."
   (find-font (font-spec :name font-name)))
 
@@ -233,13 +233,6 @@ Same as '`replace-string' `C-q' `C-m' `RET' `RET''."
     (widen)))
 
 ;; File and buffer
-(defun revert-this-buffer ()
-  "Revert the current buffer."
-  (interactive)
-  (unless (minibuffer-window-active-p (selected-window))
-    (revert-buffer t t)
-    (message "Reverted this buffer")))
-
 (defun delete-this-file ()
   "Delete the current file, and kill the buffer."
   (interactive)
@@ -340,15 +333,6 @@ Interactively, URL defaults to the string looking like a url around point."
       (if pop-buffer
           (pop-to-buffer buf)
         (switch-to-buffer buf)))))
-
-;; Mode line
-(defun mode-line-height ()
-  "Get the height of the mode-line."
-  (- (elt (window-pixel-edges) 3)
-     (elt (window-inside-pixel-edges) 3)
-     (if (bound-and-true-p window-divider-mode)
-         window-divider-default-bottom-width
-       0)))
 
 ;; Reload configurations
 (defun reload-init-file ()
